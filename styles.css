@@ -275,3 +275,13 @@ a:hover { color: var(--pine-deep); }
   padding: 6px 14px; border-radius: 999px;
 }
 .offer-note { margin: 0; font-size: .95rem; color: var(--autumn-text); font-weight: 500; }
+
+/* AI note under How it works */
+.ai-note {
+  margin-top: 32px; padding: 28px 32px; border-radius: var(--radius);
+  background: var(--lilac-wash); border: 1px solid var(--lilac-line);
+  display: flex; flex-direction: column; gap: 10px;
+}
+.ai-note h3 { font-size: 1.3rem; }
+.ai-note p { color: var(--muted); max-width: 75ch; }
+.ai-note a { color: var(--twilight-deep); font-weight: 600; }
