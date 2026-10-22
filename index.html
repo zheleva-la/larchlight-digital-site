@@ -105,21 +105,72 @@
           <h2>Recent work</h2>
           <p>Real websites for real local businesses.</p>
         </div>
-        <div class="work-grid">
-          <a class="project" href="https://adhoccreations.co.uk">
-            <!-- Replace with a screenshot: <img src="images/adhoc.jpg" alt="Ad Hoc Creations homepage"> -->
-            <div class="project-image placeholder">Screenshot: Ad Hoc Creations</div>
-            <h3>Ad Hoc Creations</h3>
-            <p>Bespoke CNC woodwork and signage. [One line on what the site does for them]</p>
-            <span class="project-link">View site <span aria-hidden="true">→</span></span>
-          </a>
-          <a class="project" href="#">
-            <!-- Replace with a screenshot and the real URL -->
-            <div class="project-image placeholder">Screenshot: Flo Furniture</div>
-            <h3>Flo Furniture</h3>
-            <p>[What Flo Furniture does] [One line on what the site does for them]</p>
-            <span class="project-link">View site <span aria-hidden="true">→</span></span>
-          </a>
+        <div class="work-list">
+
+          <article class="project">
+            <div class="project-text">
+              <h3>Ad Hoc Creations</h3>
+              <p class="project-what">Bespoke CNC woodwork and signage</p>
+              <p>A complete site for a made-to-order woodworking business.</p>
+              <ul>
+                <li>Separate pages for weddings, house signs and custom pieces</li>
+                <li>Photo gallery with a full-screen viewer</li>
+                <li>Enquiry form and a menu that works on phones</li>
+              </ul>
+              <a class="project-link" href="https://adhoccreations.co.uk" rel="noopener">Visit adhoccreations.co.uk <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="preview">
+              <div class="preview-bar">adhoccreations.co.uk</div>
+              <div class="preview-screen">
+                <iframe src="https://adhoccreations.co.uk" title="Preview of the Ad Hoc Creations website" loading="lazy" tabindex="-1" scrolling="no" sandbox="allow-scripts allow-same-origin"></iframe>
+                <a class="preview-link" href="https://adhoccreations.co.uk" rel="noopener" tabindex="-1" aria-hidden="true"></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-text">
+              <h3>Flo Furniture</h3>
+              <p class="project-what">Handmade solid pine storage furniture</p>
+              <p>A site for a family-run workshop that makes hallway storage, benches and coat racks to the customer's measurements.</p>
+              <ul>
+                <li>Home, gallery, process and about pages</li>
+                <li>Shop links throughout, so visitors can enquire or order in a click</li>
+                <li>Made-to-measure ordering explained on its own page</li>
+              </ul>
+              <a class="project-link" href="https://flofurnitureco.co.uk" rel="noopener">Visit flofurnitureco.co.uk <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="preview">
+              <div class="preview-bar">flofurnitureco.co.uk</div>
+              <div class="preview-screen">
+                <iframe src="https://flofurnitureco.co.uk" title="Preview of the Flo Furniture website" loading="lazy" tabindex="-1" scrolling="no" sandbox="allow-scripts allow-same-origin"></iframe>
+                <a class="preview-link" href="https://flofurnitureco.co.uk" rel="noopener" tabindex="-1" aria-hidden="true"></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Temporary workers.dev address: swap the three URLs below for https://rosie-ilieva-counselling.co.uk once the domain is live -->
+          <article class="project">
+            <div class="project-text">
+              <h3>Rosie Ilieva Counselling</h3>
+              <p class="project-what">Person-centred counselling in Southampton</p>
+              <p>A rebuild of an ageing WordPress site for a BACP-registered counsellor, so it's faster, cheaper to run and easier to keep up to date.</p>
+              <ul>
+                <li>Clear home, about, sessions and fees, and contact pages</li>
+                <li>"Book a session" prompts and a free first consultation, front and centre</li>
+                <li>Tap-to-call phone number and a link to her BACP enquiry form</li>
+              </ul>
+              <a class="project-link" href="https://rosie-ilieva-counselling.laura-zheleva.workers.dev/" rel="noopener">Visit the site <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="preview">
+              <div class="preview-bar">rosie-ilieva-counselling.co.uk</div>
+              <div class="preview-screen">
+                <iframe src="https://rosie-ilieva-counselling.laura-zheleva.workers.dev/" title="Preview of the Rosie Ilieva Counselling website" loading="lazy" tabindex="-1" scrolling="no" sandbox="allow-scripts allow-same-origin"></iframe>
+                <a class="preview-link" href="https://rosie-ilieva-counselling.laura-zheleva.workers.dev/" rel="noopener" tabindex="-1" aria-hidden="true"></a>
+              </div>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
@@ -158,5 +209,17 @@
       <span class="footer-story">The name blends the New Forest's golden larches with a little bit of me.</span>
     </div>
   </footer>
+
+  <script>
+    // Scale each 1280px-wide live site preview to fit its frame
+    function fitPreviews() {
+      document.querySelectorAll('.preview-screen').forEach(function (box) {
+        var frame = box.querySelector('iframe');
+        if (frame) frame.style.transform = 'scale(' + (box.clientWidth / 1280) + ')';
+      });
+    }
+    fitPreviews();
+    window.addEventListener('resize', fitPreviews);
+  </script>
 </body>
 </html>
