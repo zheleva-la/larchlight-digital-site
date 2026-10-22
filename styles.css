@@ -266,3 +266,4 @@ a:hover { color: var(--pine-deep); }
 .price-note { margin-top: auto; padding-top: 8px; font-size: .95rem; color: var(--muted); }
 .price-cta { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
 .price-cta p { color: var(--muted); }
+.footer-links { display: flex; gap: 20px; }
