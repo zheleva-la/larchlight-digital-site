@@ -1,3 +1,9 @@
+/* Outfit font, self-hosted (SIL Open Font License, see fonts/OFL.txt) */
+@font-face { font-family: 'Outfit'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/outfit-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Outfit'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/outfit-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Outfit'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/outfit-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Outfit'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/outfit-latin-700-normal.woff2') format('woff2'); }
+
 /* Larchlight Digital – brand tokens */
 :root {
   /* Sunset palette */
@@ -224,3 +230,21 @@ a:hover { color: var(--pine-deep); }
   .section { padding: 64px 0; }
   .contact-form { padding: 24px; }
 }
+
+/* Privacy link and notes */
+.footer-link { color: var(--sand); }
+.footer-link:hover { color: var(--white); }
+.form-note { margin: 0; font-size: .9rem; color: var(--muted); }
+.form-note a { color: var(--twilight-deep); }
+
+/* Simple text pages (privacy) */
+.page { padding: 72px 0 96px; }
+.page .container { max-width: 760px; }
+.page h1 { font-size: clamp(2.2rem, 5vw, 3rem); margin-bottom: 12px; }
+.page h2 { font-size: 1.5rem; margin: 40px 0 12px; }
+.page p, .page li { color: #3A3A4A; }
+.page p + p { margin-top: 12px; }
+.page ul { padding-left: 1.2em; margin: 12px 0 0; }
+.page li { margin-bottom: 8px; }
+.page li::marker { color: var(--autumn); }
+.page .updated { color: var(--muted); font-size: .95rem; }
