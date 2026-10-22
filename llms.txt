@@ -1,0 +1,19 @@
+# Larchlight Digital
+
+> Friendly, simple websites for small businesses in Hampshire, UK, run by Laura. Built for people who aren't confident with technology: no jargon, and the technical side is handled for you.
+
+## Services
+- Website design and build: up to 5 pages, two rounds of changes, tested on phone, tablet and computer, with a contact form. £99 one-off, after a free consultation.
+- Hosting and maintenance: £9.99 a month, including one small update a month.
+- Domains registered in the client's own name, at cost.
+- Sites are plain HTML and CSS with no WordPress, plugins or database.
+
+## Recent work
+- [Ad Hoc Creations](https://adhoccreations.co.uk): bespoke CNC woodwork and signage
+- [Flo Furniture](https://flofurnitureco.co.uk): handmade solid pine storage furniture
+- Rosie Ilieva Counselling: person-centred counselling in Southampton
+
+## Contact
+- Website: https://larchlightdigital.co.uk
+- Email: hello@larchlightdigital.co.uk
+- Area: Hampshire, including Southampton and Eastleigh

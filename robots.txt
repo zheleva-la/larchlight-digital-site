@@ -1,0 +1,5 @@
+# Larchlight Digital – all search engines and AI search tools are welcome
+User-agent: *
+Allow: /
+
+Sitemap: https://larchlightdigital.co.uk/sitemap.xml
