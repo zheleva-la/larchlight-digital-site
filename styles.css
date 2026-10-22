@@ -199,6 +199,16 @@ a:hover { color: var(--pine-deep); }
 }
 .field textarea { resize: vertical; }
 .contact-form .btn { align-self: flex-start; }
+.contact-form .btn:disabled { opacity: .7; cursor: wait; }
+.optional { font-weight: 400; color: var(--muted); }
+.form-status { margin: 0; font-weight: 500; }
+.form-status:empty { display: none; }
+.form-status.is-success { color: #2E6B45; }
+.form-status.is-error { color: var(--autumn-text); }
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0; padding: 0; margin: -1px;
+}
 
 /* Footer */
 .site-footer { background: var(--pine-deep); color: #B8C0DC; font-size: .95rem; }

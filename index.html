@@ -210,21 +210,29 @@
           <p>Tell me a little about your business. I'll get back to you within a week — no pressure, no jargon.</p>
           <p>Prefer email? <a href="mailto:hello@larchlightdigital.co.uk">hello@larchlightdigital.co.uk</a></p>
         </div>
-        <!-- Cloudflare Pages has no built-in forms: point this at a form service (e.g. Formspree) -->
-        <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <!-- Enquiries go to Formspree, which emails them to hello@larchlightdigital.co.uk -->
+        <form class="contact-form" id="contact-form" action="https://formspree.io/f/mqppzgkb" method="POST">
+          <input type="hidden" name="_subject" value="New website enquiry – Larchlight Digital">
+          <!-- Spam trap: hidden from people, bots fill it in -->
+          <input type="text" name="_gotcha" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="field">
             <label for="name">Your name</label>
             <input id="name" name="name" type="text" autocomplete="name" required>
           </div>
           <div class="field">
-            <label for="contact-detail">Email or phone</label>
-            <input id="contact-detail" name="contact" type="text" autocomplete="email" required>
+            <label for="email">Your email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone <span class="optional">(optional)</span></label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel">
           </div>
           <div class="field">
             <label for="message">What can I help with?</label>
             <textarea id="message" name="message" rows="5" required></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Send message</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>
     </section>
@@ -246,6 +254,51 @@
     }
     fitPreviews();
     window.addEventListener('resize', fitPreviews);
+
+    // Send the contact form without leaving the page.
+    // Without JavaScript the form still posts normally to Formspree.
+    (function () {
+      var form = document.getElementById('contact-form');
+      var status = document.getElementById('form-status');
+      if (!form || !window.fetch) return;
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var button = form.querySelector('button[type="submit"]');
+        button.disabled = true;
+        button.textContent = 'Sending…';
+        status.className = 'form-status';
+        status.textContent = '';
+
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        })
+          .then(function (response) {
+            if (response.ok) {
+              form.reset();
+              status.className = 'form-status is-success';
+              status.textContent = "Thank you! Your message is on its way. I'll get back to you within a week.";
+              return;
+            }
+            return response.json().then(function (data) {
+              var detail = data && data.errors ? data.errors.map(function (e) { return e.message; }).join(' ') : '';
+              throw new Error(detail);
+            });
+          })
+          .catch(function (error) {
+            status.className = 'form-status is-error';
+            var detail = error.message ? error.message.charAt(0).toUpperCase() + error.message.slice(1).replace(/\.?$/, '. ') : '';
+            status.textContent = 'Sorry, something went wrong. ' + detail +
+              'Please try again, or email hello@larchlightdigital.co.uk.';
+          })
+          .finally(function () {
+            button.disabled = false;
+            button.textContent = 'Send message';
+          });
+      });
+    })();
   </script>
 </body>
 </html>
