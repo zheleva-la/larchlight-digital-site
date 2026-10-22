@@ -3,7 +3,7 @@
 > Friendly, simple websites for small businesses in Hampshire, UK, run by Laura. Built for people who aren't confident with technology: no jargon, and the technical side is handled for you.
 
 ## Services
-- Website design and build: up to 5 pages, two rounds of changes, tested on phone, tablet and computer, with a contact form. £99 one-off, after a free consultation.
+- Website design and build: up to 5 pages, two rounds of changes, tested on phone, tablet and computer, with a contact form. £99 one-off as an opening offer, after a free consultation.
 - Hosting and maintenance: £9.99 a month, including the client's domain and one small update a month.
 - Domains are registered in the client's own name.
 - Sites are plain HTML and CSS with no WordPress, plugins or database.

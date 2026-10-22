@@ -267,3 +267,11 @@ a:hover { color: var(--pine-deep); }
 .price-cta { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
 .price-cta p { color: var(--muted); }
 .footer-links { display: flex; gap: 20px; }
+
+.offer-badge {
+  align-self: flex-start; margin: 0;
+  background: var(--autumn); color: var(--pine-deep);
+  font-size: .85rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 999px;
+}
+.offer-note { margin: 0; font-size: .95rem; color: var(--autumn-text); font-weight: 500; }
