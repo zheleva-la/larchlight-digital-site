@@ -7,6 +7,7 @@
 - Hosting and maintenance: £9.99 a month, including the client's domain, one small update a month and a monthly visitor report.
 - Domains are registered in the client's own name.
 - Sites are plain HTML and CSS with no WordPress, plugins or database.
+- No online shops or payments built in; sites can link to existing shops such as Etsy.
 
 ## Recent work
 - [Ad Hoc Creations](https://adhoccreations.co.uk): bespoke CNC woodwork and signage
