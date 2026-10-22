@@ -248,3 +248,21 @@ a:hover { color: var(--pine-deep); }
 .page li { margin-bottom: 8px; }
 .page li::marker { color: var(--autumn); }
 .page .updated { color: var(--muted); font-size: .95rem; }
+
+/* Prices */
+.price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+.price-card {
+  background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 32px; display: flex; flex-direction: column; gap: 14px;
+}
+.price-card-feature { background: var(--lilac-wash); border-color: var(--lilac-line); }
+.price-card h3 { font-size: 1.4rem; }
+.price { margin: 0; display: flex; align-items: baseline; gap: 8px; }
+.price-amount { font-size: 2.6rem; font-weight: 700; color: var(--pine-deep); line-height: 1; }
+.price-unit { color: var(--muted); font-weight: 500; }
+.price-list { margin: 0; padding-left: 1.2em; color: #3A3A4A; }
+.price-list li { margin-bottom: 8px; }
+.price-list li::marker { color: var(--autumn); }
+.price-note { margin-top: auto; padding-top: 8px; font-size: .95rem; color: var(--muted); }
+.price-cta { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
+.price-cta p { color: var(--muted); }
