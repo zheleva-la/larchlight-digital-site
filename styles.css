@@ -224,6 +224,11 @@ a:hover { color: var(--pine-deep); }
 }
 .footer-name { font-weight: 600; color: var(--sand); }
 .footer-story { flex-basis: 100%; font-style: italic; }
+.footer-note {
+  flex-basis: 100%; margin: 0; padding-top: 16px;
+  border-top: 1px solid rgba(184, 192, 220, .25);
+  font-size: .85rem; max-width: 80ch;
+}
 
 @media (max-width: 600px) {
   .hero-inner { padding-top: 56px; padding-bottom: 64px; gap: 40px; }
@@ -275,13 +280,3 @@ a:hover { color: var(--pine-deep); }
   padding: 6px 14px; border-radius: 999px;
 }
 .offer-note { margin: 0; font-size: .95rem; color: var(--autumn-text); font-weight: 500; }
-
-/* AI note under How it works */
-.ai-note {
-  margin-top: 32px; padding: 28px 32px; border-radius: var(--radius);
-  background: var(--lilac-wash); border: 1px solid var(--lilac-line);
-  display: flex; flex-direction: column; gap: 10px;
-}
-.ai-note h3 { font-size: 1.3rem; }
-.ai-note p { color: var(--muted); max-width: 75ch; }
-.ai-note a { color: var(--twilight-deep); font-weight: 600; }
