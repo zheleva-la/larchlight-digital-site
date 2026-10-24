@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Demo Slideshow | Larchlight Digital</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+@font-face { font-family: 'Jost'; font-style: normal; font-weight: 300; font-display: swap; src: url('/fonts/jost-latin-300-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Jost'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/jost-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Jost'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/jost-latin-500-normal.woff2') format('woff2'); }
+/* Layout: one full-screen black frame; a single placeholder square dissolves into the next; type is tiny, plain and wide-spaced on the edges. Deliberately a single black-and-white look. */
+:root {
+  color-scheme: dark;
+  --bg: #000000;
+  --fg: #F2F2F2;
+  --muted: #A8A8A8;
+  --line: rgba(255, 255, 255, 0.28);
+  --line-on: #FFFFFF;
+  --sq1: #2E2E2E; --sq1-ink: #CFCFCF;
+  --sq2: #5A5A5A; --sq2-ink: #EDEDED;
+  --sq3: #8C8C8C; --sq3-ink: #111111;
+  --sq4: #C4C4C4; --sq4-ink: #111111;
+  --display: "Jost", "Futura", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --sans: "Jost", "Futura", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fade: 1.4s;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0; overflow: hidden;
+  background: var(--bg); color: var(--fg);
+  font-family: var(--sans); font-weight: 300; font-size: 13px; letter-spacing: 0.3em; text-transform: uppercase; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+}
+button { font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 6px 0; }
+button:focus-visible, a:focus-visible { outline: 1px solid var(--line-on); outline-offset: 4px; }
+a { color: inherit; text-decoration: none; }
+
+.stage { position: fixed; inset: 0; background: var(--bg); display: grid; }
+.slide { grid-area: 1 / 1; opacity: 0; transition: opacity var(--fade) ease-in-out;
+  width: 100%; height: 100%; display: grid; place-items: center; }
+.slide.on { opacity: 1; }
+.slide span { font-size: 12px; letter-spacing: 0.4em; }
+.s1 { background: var(--sq1); color: var(--sq1-ink); }
+.s2 { background: var(--sq2); color: var(--sq2-ink); }
+.s3 { background: var(--sq3); color: var(--sq3-ink); }
+.s4 { background: var(--sq4); color: var(--sq4-ink); }
+
+.ui { position: fixed; inset: 0; display: grid; grid-template-rows: auto 1fr auto; z-index: 2; pointer-events: none;
+  padding-top: calc(env(safe-area-inset-top, 0px) + 20px);
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 20px);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.ui a, .ui button { pointer-events: auto; }
+.top, .bottom { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 10px 24px; min-width: 0; }
+.name { font-family: var(--display); font-weight: 400; font-size: clamp(1.3rem, 2.6vw, 2rem); letter-spacing: 0.7em; line-height: 1; }
+.top .right { text-align: right; color: var(--muted); font-size: 11px; }
+.top .right a { color: var(--fg); border-bottom: 1px solid var(--line); padding-bottom: 2px; }
+.top .right a:hover { border-color: var(--line-on); }
+.caption { min-width: 0; }
+.caption .title { font-size: 14px; font-weight: 400; letter-spacing: 0.36em; }
+.caption .meta { color: var(--muted); font-size: 11px; margin-top: 4px; font-variant-numeric: tabular-nums; }
+.controls { display: flex; align-items: center; gap: 22px; font-variant-numeric: tabular-nums; }
+.count { color: var(--muted); }
+.count b { color: var(--fg); font-weight: 400; }
+.bar { position: fixed; left: 0; right: 0; bottom: 0; height: 2px; background: var(--line); }
+.bar i { display: block; height: 100%; width: 0; background: var(--line-on); }
+.bar.run i { animation: fill var(--dur, 7s) linear forwards; }
+@keyframes fill { from { width: 0; } to { width: 100%; } }
+.hit { position: fixed; top: 0; bottom: 0; width: 22%; z-index: 1; background: none; border: 0; padding: 0; }
+.hit.prev { left: 0; cursor: w-resize; }
+.hit.next { right: 0; cursor: e-resize; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+@media (max-width: 640px) {
+  body { font-size: 12px; }
+  .top .right { text-align: left; letter-spacing: 0.2em; }
+  .caption .title { letter-spacing: 0.24em; }
+  .hit { width: 30%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .slide { transition-duration: 0.01s; }
+}
+</style>
+</head>
+<body>
+<div class="stage" id="stage" aria-roledescription="carousel" aria-label="Photographs"></div>
+
+<button class="hit prev" id="hit-prev" aria-label="Previous photograph" tabindex="-1"></button>
+<button class="hit next" id="hit-next" aria-label="Next photograph" tabindex="-1"></button>
+
+<div class="ui">
+  <div class="top">
+    <div class="name">DEMO</div>
+    <div class="right">
+      Landscape &amp; nature photography<br>
+      <a href="mailto:studio@demo.example">studio@demo.example</a><br>
+      <a href="/">Sample design by Larchlight Digital</a>
+    </div>
+  </div>
+  <div></div>
+  <div class="bottom">
+    <div class="caption" aria-live="polite">
+      <div class="title" id="cap-title"></div>
+      <div class="meta" id="cap-meta"></div>
+    </div>
+    <div class="controls">
+      <button id="btn-prev" aria-label="Previous photograph">&larr;</button>
+      <span class="count" id="count"></span>
+      <button id="btn-next" aria-label="Next photograph">&rarr;</button>
+      <button id="btn-play" aria-pressed="false">Pause</button>
+    </div>
+  </div>
+</div>
+<div class="bar run" id="bar" aria-hidden="true"><i></i></div>
+<div class="sr">Sample design by Larchlight Digital. The photographer is not real; the grey squares stand in for photographs.</div>
+
+<script>
+(function () {
+  var DURATION = 6000;
+  var photos = [
+    { title: "Photograph title", meta: "Location · lens · aperture · shutter · ISO" },
+    { title: "Photograph title", meta: "Location · lens · aperture · shutter · ISO" },
+    { title: "Photograph title", meta: "Location · lens · aperture · shutter · ISO" },
+    { title: "Photograph title", meta: "Location · lens · aperture · shutter · ISO" }
+  ];
+
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+
+  var stage = document.getElementById("stage");
+  var slides = photos.map(function (p, i) {
+    var el = document.createElement("div");
+    el.className = "slide s" + (i + 1);
+    el.setAttribute("role", "img");
+    el.setAttribute("aria-label", "Placeholder for photograph " + (i + 1));
+    el.innerHTML = "<span>Photo " + pad(i + 1) + "</span>";
+    stage.appendChild(el);
+    return el;
+  });
+
+  var capTitle = document.getElementById("cap-title"), capMeta = document.getElementById("cap-meta"),
+      count = document.getElementById("count"), bar = document.getElementById("bar"),
+      btnPlay = document.getElementById("btn-play");
+  var cur = 0, timer = null,
+      playing = !(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+
+  function restartBar() {
+    bar.classList.remove("run"); void bar.offsetWidth;
+    bar.style.setProperty("--dur", DURATION + "ms");
+    if (playing) bar.classList.add("run");
+  }
+  function show(i) {
+    cur = (i + photos.length) % photos.length;
+    slides.forEach(function (s, k) { s.classList.toggle("on", k === cur); });
+    capTitle.textContent = photos[cur].title; capMeta.textContent = photos[cur].meta;
+    count.innerHTML = "<b>" + pad(cur + 1) + "</b> / " + pad(photos.length);
+    restartBar(); schedule();
+  }
+  function schedule() { clearTimeout(timer); if (playing) timer = setTimeout(function () { show(cur + 1); }, DURATION); }
+  function setPlaying(p) {
+    playing = p; btnPlay.textContent = p ? "Pause" : "Play"; btnPlay.setAttribute("aria-pressed", String(!p));
+    restartBar(); schedule();
+  }
+
+  document.getElementById("btn-next").addEventListener("click", function () { show(cur + 1); });
+  document.getElementById("btn-prev").addEventListener("click", function () { show(cur - 1); });
+  document.getElementById("hit-next").addEventListener("click", function () { show(cur + 1); });
+  document.getElementById("hit-prev").addEventListener("click", function () { show(cur - 1); });
+  btnPlay.addEventListener("click", function () { setPlaying(!playing); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") show(cur + 1);
+    else if (e.key === "ArrowLeft") show(cur - 1);
+    else if (e.key === " " && e.target === document.body) { e.preventDefault(); setPlaying(!playing); }
+  });
+
+  btnPlay.textContent = playing ? "Pause" : "Play";
+  btnPlay.setAttribute("aria-pressed", String(!playing));
+  show(0);
+})();
+</script>
+</body>
+</html>
