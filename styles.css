@@ -147,6 +147,11 @@ a:hover { color: var(--pine-deep); }
 .project ul { margin: 0; padding-left: 1.2em; color: var(--muted); }
 .project li { margin-bottom: 6px; }
 .project li::marker { color: var(--autumn); }
+.review { margin: 4px 0; padding: 18px 20px; background: var(--lilac-wash); border-left: 4px solid var(--autumn); border-radius: 0 var(--radius) var(--radius) 0; }
+.review blockquote { margin: 0; }
+.project-text .review blockquote p { color: var(--charcoal); font-style: italic; }
+.review figcaption { margin-top: 10px; font-weight: 600; color: var(--twilight-deep); }
+.review figcaption::before { content: "— "; }
 .project-link { font-weight: 600; color: var(--pine); text-underline-offset: 4px; }
 .project-link:hover { color: var(--pine-deep); }
 
