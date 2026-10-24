@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Demo Gallery | Larchlight Digital</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 300; font-display: swap; src: url('/fonts/hanken-grotesk-latin-300-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/hanken-grotesk-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/hanken-grotesk-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Instrument Serif'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/instrument-serif-latin-400-normal.woff2') format('woff2'); }
+html { -webkit-text-size-adjust: 100%; }
+/* Layout: one quiet column of large frames on a wide grid, captions set like exhibition labels, no hero text. */
+:root {
+  --bg: #F7F7F5;
+  --fg: #1C1F1E;
+  --muted: #666B68;
+  --rule: #DADBD7;
+  --accent: #4F6B57;
+  --note-bg: #ECEDE9;
+  /* Placeholder tones where photographs would sit */
+  --t-mist-a: #CBD3D0; --t-mist-b: #A9B6B2;
+  --t-moss-a: #B7C2B0; --t-moss-b: #6F8468;
+  --t-dune-a: #E3DDD0; --t-dune-b: #B9AD96;
+  --t-dusk-a: #B4B9C9; --t-dusk-b: #5C6580;
+  --t-reed-a: #D6D8C2; --t-reed-b: #8F9470;
+  --t-stone-a: #D4D2CF; --t-stone-b: #8B8985;
+  --serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --sans: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131615; --fg: #E6E8E4; --muted: #99A09B; --rule: #2C312F; --accent: #8FB09A; --note-bg: #1C201E;
+    --t-mist-a: #3A4442; --t-mist-b: #5B6A67;
+    --t-moss-a: #364034; --t-moss-b: #4F6249;
+    --t-dune-a: #4A453B; --t-dune-b: #766C58;
+    --t-dusk-a: #3A3F52; --t-dusk-b: #232738;
+    --t-reed-a: #474A36; --t-reed-b: #5F6347;
+    --t-stone-a: #444240; --t-stone-b: #5E5C59;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131615; --fg: #E6E8E4; --muted: #99A09B; --rule: #2C312F; --accent: #8FB09A; --note-bg: #1C201E;
+  --t-mist-a: #3A4442; --t-mist-b: #5B6A67;
+  --t-moss-a: #364034; --t-moss-b: #4F6249;
+  --t-dune-a: #4A453B; --t-dune-b: #766C58;
+  --t-dusk-a: #3A3F52; --t-dusk-b: #232738;
+  --t-reed-a: #474A36; --t-reed-b: #5F6347;
+  --t-stone-a: #444240; --t-stone-b: #5E5C59;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg); color: var(--fg);
+  font-family: var(--sans); font-weight: 300; font-size: 16px; line-height: 1.65;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 48px;
+}
+a { color: inherit; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.wrap { max-width: 1180px; margin: 0 auto; }
+
+/* Sample notice */
+.sample {
+  background: var(--note-bg); color: var(--muted);
+  font-size: 13px; line-height: 1.5; padding: 10px 16px; margin: 0 calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+  text-align: center;
+}
+
+/* Header */
+header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 32px; padding-block: 28px 56px; }
+.name { font-family: var(--serif); font-size: 1.9rem; line-height: 1; text-decoration: none; letter-spacing: 0.01em; }
+nav { display: flex; gap: 28px; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; }
+nav a { text-decoration: none; color: var(--muted); }
+nav a:hover { color: var(--fg); }
+
+/* Frames */
+.frame { margin: 0; min-width: 0; }
+.ph { width: 100%; max-width: 100%; display: block; }
+.cap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 16px; margin-top: 10px; font-size: 13px; color: var(--muted); line-height: 1.5; }
+.cap strong { font-weight: 400; color: var(--fg); }
+.cap .tech { font-variant-numeric: tabular-nums; }
+
+.ph.mist  { background: linear-gradient(180deg, var(--t-mist-a) 0%, var(--t-mist-a) 48%, var(--t-mist-b) 100%); }
+.ph.moss  { background: linear-gradient(170deg, var(--t-moss-a) 0%, var(--t-moss-b) 100%); }
+.ph.dune  { background: linear-gradient(180deg, var(--t-dune-a) 0%, var(--t-dune-a) 40%, var(--t-dune-b) 100%); }
+.ph.dusk  { background: linear-gradient(180deg, var(--t-dusk-a) 0%, var(--t-dusk-b) 100%); }
+.ph.reed  { background: linear-gradient(190deg, var(--t-reed-a) 0%, var(--t-reed-b) 100%); }
+.ph.stone { background: linear-gradient(180deg, var(--t-stone-a) 0%, var(--t-stone-b) 100%); }
+
+.lead .ph { aspect-ratio: 16 / 8; }
+
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 56px 32px; margin-top: 56px; align-items: start; }
+.g1 { grid-column: 1 / span 5; }
+.g1 .ph { aspect-ratio: 4 / 5; }
+.g2 { grid-column: 7 / span 6; margin-top: 96px; }
+.g2 .ph { aspect-ratio: 3 / 2; }
+.g3 { grid-column: 2 / span 6; }
+.g3 .ph { aspect-ratio: 1 / 1; }
+.g4 { grid-column: 9 / span 4; margin-top: 64px; }
+.g4 .ph { aspect-ratio: 3 / 4; }
+
+/* Series index */
+section { margin-top: 104px; }
+h2 { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; margin: 0 0 20px; line-height: 1.2; }
+.series { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.series li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 24px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+.series span:last-child { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.two { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px 32px; }
+.two > .label { grid-column: 1 / span 3; }
+.two > .body { grid-column: 4 / span 6; }
+.two p { margin: 0 0 1em; max-width: 62ch; }
+.muted { color: var(--muted); }
+
+footer { margin-top: 104px; padding-top: 20px; border-top: 1px solid var(--rule); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-size: 13px; color: var(--muted); }
+
+@media (max-width: 760px) {
+  header { padding-block: 20px 36px; }
+  nav { gap: 20px; }
+  .lead .ph { aspect-ratio: 4 / 3; }
+  .grid { grid-template-columns: minmax(0, 1fr); gap: 40px; margin-top: 40px; }
+  .g1, .g2, .g3, .g4 { grid-column: auto; margin-top: 0; }
+  section { margin-top: 72px; }
+  .two > .label, .two > .body { grid-column: 1 / -1; }
+  footer { margin-top: 72px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  nav a { transition: color 0.2s; }
+}
+</style>
+</head>
+<body>
+<div class="sample">Sample design by Larchlight Digital. The photographer and photographs are not real; the tones mark where images would go.</div>
+
+<div class="wrap">
+  <header>
+    <a class="name" href="#top" id="top">DEMO</a>
+    <nav aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#series">Series</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <figure class="frame lead" id="work">
+      <div class="ph mist" role="img" aria-label="Placeholder for a wide photograph of a salt marsh in morning mist"></div>
+      <figcaption class="cap">
+        <span><strong>Salt marsh, first light</strong> · Blakeney, Norfolk</span>
+        <span class="tech">35 mm · f/8 · 1/125 s · ISO 100</span>
+      </figcaption>
+    </figure>
+
+    <div class="grid">
+      <figure class="frame g1">
+        <div class="ph moss" role="img" aria-label="Placeholder for a tall photograph of beech woodland in spring"></div>
+        <figcaption class="cap">
+          <span><strong>Beech wood, April</strong> · New Forest</span>
+          <span class="tech">50 mm · f/5.6 · 1/60 s</span>
+        </figcaption>
+      </figure>
+
+      <figure class="frame g2">
+        <div class="ph dune" role="img" aria-label="Placeholder for a photograph of dune grass in low sun"></div>
+        <figcaption class="cap">
+          <span><strong>Marram, low sun</strong> · Holkham</span>
+          <span class="tech">85 mm · f/11 · 1/250 s</span>
+        </figcaption>
+      </figure>
+
+      <figure class="frame g3">
+        <div class="ph reed" role="img" aria-label="Placeholder for a square photograph of reed beds in winter"></div>
+        <figcaption class="cap">
+          <span><strong>Reed bed, January</strong> · Hickling Broad</span>
+          <span class="tech">70 mm · f/9 · 1/200 s</span>
+        </figcaption>
+      </figure>
+
+      <figure class="frame g4">
+        <div class="ph dusk" role="img" aria-label="Placeholder for a portrait photograph of a heron at dusk"></div>
+        <figcaption class="cap">
+          <span><strong>Heron, dusk</strong> · Pennington Marshes</span>
+          <span class="tech">400 mm · f/5.6 · 1/500 s</span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <section id="series" aria-labelledby="series-h">
+      <h2 id="series-h">Series</h2>
+      <ul class="series">
+        <li><span>Edge of the Marsh</span><span>2024</span></li>
+        <li><span>Woodland in Four Seasons</span><span>2023</span></li>
+        <li><span>Winter Birds, Quiet Water</span><span>2022</span></li>
+        <li><span>Salt and Shingle</span><span>2021</span></li>
+      </ul>
+    </section>
+
+    <section id="about" class="two" aria-labelledby="about-h">
+      <div class="label"><h2 id="about-h">About</h2></div>
+      <div class="body">
+        <p>DEMO is a nature and landscape photographer based on the south coast of England. Work is made slowly, on foot, in the hour either side of sunrise.</p>
+        <p class="muted">Available for editorial commissions, print sales and limited-edition portfolios. Prints are made on cotton rag paper and shipped flat.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="two" aria-labelledby="contact-h">
+      <div class="label"><h2 id="contact-h">Contact</h2></div>
+      <div class="body">
+        <p>For commissions and print enquiries:</p>
+        <p><a href="mailto:studio@demo.example">studio@demo.example</a></p>
+        <p class="muted">Usually replies within two working days.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© DEMO (sample)</span>
+    <a href="/">Website design by Larchlight Digital</a>
+  </footer>
+</div>
+</body>
+</html>
